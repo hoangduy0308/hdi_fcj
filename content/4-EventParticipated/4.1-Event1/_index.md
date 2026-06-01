@@ -6,121 +6,114 @@ chapter: false
 pre: " <b> 4.1. </b> "
 ---
 
-{{% notice warning %}}
-⚠️ **Note:** The information below is for reference purposes only. Please **do not copy it verbatim** into your report, including this warning.
-{{% /notice %}}
-
-# Summary Report: “GenAI-powered App-DB Modernization workshop”
+# Summary Report: "AWS Vietnam Community Day 2026 (FCAJ Community Day)"
 
 ### Event Objectives
 
-- Share best practices in modern application design
-- Introduce Domain-Driven Design (DDD) and event-driven architecture
-- Provide guidance on selecting the right compute services
-- Present AI tools to support the development lifecycle
+- Bring the FCAJ community together and share practical insights about Generative AI and Cloud Computing tailored for First Cloud AI Journey members.
+- Understand Context Engineering in depth to use AI tools effectively in daily studies and workflows.
+- Update knowledge on newer AWS services, including the Amazon Quick Suite, and CloudFront's cost optimization and security capabilities.
+- Analyze the root causes of non-determinism in LLMs and explore production-ready architectures for multi-agent systems.
 
 ### Speakers
 
-- **Jignesh Shah** – Director, Open Source Databases
-- **Erica Liu** – Sr. GTM Specialist, AppMod
-- **Fabrianne Effendi** – Assc. Specialist SA, Serverless Amazon Web Services
+- **Tinh Truong** - Platform Engineer, GoTyme Bank
+- **Pham Ng Hai Anh** - AWS Community Builder, G-AsiaPacific Vietnam
+- **Nguyen Tuan Thinh** - DevOps Engineer, First Cloud AI Journey
+- **Team VIB** - Software Developers/Hackathon Winners
+- **Duc Dao** - Solution Architect, Cloud Kinetics
+- **Vy Lam** - Senior Business Systems Analyst, VPBank
 
 ### Key Highlights
 
-#### Identifying the drawbacks of legacy application architecture
+#### Context Is Everything: Making AI Actually Work for You
 
-- Long product release cycles → Lost revenue/missed opportunities  
-- Inefficient operations → Reduced productivity, higher costs  
-- Non-compliance with security regulations → Security breaches, loss of reputation  
+- Explained that AI models are already powerful, and the biggest bottleneck is how users feed context to them.
+- Highlighted three common mistakes: dumping raw data (which dilutes signals and wastes tokens), stating the obvious to the model, and writing vague prompts without constraints.
+- Introduced the "Second AI Brain" framework: Store -> Retrieve -> Generate -> Learn.
+- Provided guidance for program members to build small, practical AI tools like Study Assistants, PDF Chat Apps, or Code Reviewers.
 
-#### Transitioning to modern application architecture – Microservices
+#### Friendly AI Assistant with Amazon Quick
 
-Migrating to a modular system — each function is an **independent service** communicating via **events**, built on three core pillars:
+- Addressed office workflow struggles: spending excessive time gathering data from different sources and doing repetitive tasks.
+- Introduced the Amazon Quick Suite for natural-language data analysis: Quick Chat (deep analysis), Quick Flows (no-code automation), Quick Spaces (shared team knowledge), and Quick Sight (voice-to-dashboard).
+- Demoed automation of administrative tasks: generating Minutes of Meetings (MoM), emailing stakeholders, and scheduling follow-ups without writing code.
 
-- **Queue Management**: Handle asynchronous tasks  
-- **Caching Strategy**: Optimize performance  
-- **Message Handling**: Flexible inter-service communication  
+#### From Edge to Origin: CloudFront as Your Foundation
 
-#### Domain-Driven Design (DDD)
+- Solved cost and security concerns for small websites/startups: preventing AWS bill spikes due to unexpected traffic or DDoS attacks.
+- Discussed cost optimization strategies like free data transfer out from AWS origins to CloudFront, flat-price tiers, and the Security Savings Bundle.
+- Explained built-in security features: AWS WAF, Route 53, Shield, Mutual TLS (mTLS), and origin cloaking (securing S3/ALB origins via VPC Origin and OAC).
+- Covered performance and reliability improvements: multi-layer caching, HTTP/3 (QUIC/UDP), HTTP compression, automatic origin failover, and edge logic (CloudFront Functions, Lambda@Edge).
 
-- **Four-step method**: Identify domain events → arrange timeline → identify actors → define bounded contexts  
-- **Bookstore case study**: Demonstrates real-world DDD application  
-- **Context mapping**: 7 patterns for integrating bounded contexts  
+#### 36 hrs with LotusHacks – Building UTMorpho from Idea to Reality
 
-#### Event-Driven Architecture
+- Shared a real-world story of surviving 36 hours of continuous coding at Vietnam's largest hackathon.
+- Walked through the practical challenges of developing UTMorpho: starting with zero ideas at hour zero, filtering out AI-generated garbage output, hitting API token limits, and facing burnout near the pitch.
+- Outlined key learnings: real frustration leads to the best ideas; team sync matters more than individual skill; and hackathons test endurance in the face of failure.
 
-- **3 integration patterns**: Publish/Subscribe, Point-to-point, Streaming  
-- **Benefits**: Loose coupling, scalability, resilience  
-- **Sync vs async comparison**: Understanding the trade-offs  
+#### Non-Determinism of "Deterministic" LLM Settings
 
-#### Compute Evolution
+- Debunked the assumption that setting Temperature = 0 guarantees fully reproducible (deterministic) outputs.
+- Explained technical root causes: non-associative floating-point arithmetic on parallel GPU kernels and inference batching by API providers.
+- Proposed mitigation strategies: running prompts multiple times with majority voting, enforcing structured outputs (JSON mode/function calling), and using `temperature = 0.1` to avoid greedy-decoding loops.
 
-- **Shared Responsibility Model**: EC2 → ECS → Fargate → Lambda  
-- **Serverless benefits**: No server management, auto-scaling, pay-for-value  
-- **Functions vs Containers**: Criteria for appropriate choice  
+#### Enterprise-Grade Multi-Agent System: The Case of Startup Credit Scoring
 
-#### Amazon Q Developer
-
-- **SDLC automation**: From planning to maintenance  
-- **Code transformation**: Java upgrade, .NET modernization  
-- **AWS Transform agents**: VMware, Mainframe, .NET migration  
+- Analyzed why traditional credit scoring systems reject startups (requiring 3+ years of financials and physical collateral).
+- Proposed a Multi-Agent "Virtual Credit Committee" architecture: specialized agents (Financial, Market, Team, Risk, Compliance) collaborating under a Manager.
+- Demonstrated business ROI: 95% faster processing (from weeks to 2-4 hours), 95% cost reduction per application, and doubled approval rates.
+- Outlined the deployment pipeline on AWS: CrewAI -> Bedrock AgentCore -> Docker -> ECR -> API Gateway, emphasizing the need to design the six enterprise pillars (security, data, network, operations, human, compliance) from day one.
 
 ### Key Takeaways
 
-#### Design Mindset
+#### Working with AI
 
-- **Business-first approach**: Always start from the business domain, not the technology  
-- **Ubiquitous language**: Importance of a shared vocabulary between business and tech teams  
-- **Bounded contexts**: Identifying and managing complexity in large systems  
+- Context engineering is the most underrated GenAI skill. Feeding the model targeted, high-quality context is far more effective than trying to write a complex prompt.
+- LLM outputs are always probabilistic, even at temperature = 0. Systems must be designed and tested to handle variance and output disagreements.
 
 #### Technical Architecture
 
-- **Event storming technique**: Practical method for modeling business processes  
-- Use **event-driven communication** instead of synchronous calls  
-- **Integration patterns**: When to use sync, async, pub/sub, streaming  
-- **Compute spectrum**: Criteria for choosing between VM, containers, and serverless  
+- CloudFront is not just a CDN to speed up assets; it acts as a cost-control, security, and origin isolation layer when configured properly.
+- Multi-agent architectures with specialized agents and peer checks outperform single-agent systems on complex, high-stakes decisions.
 
-#### Modernization Strategy
+#### Product Design & Career
 
-- **Phased approach**: No rushing — follow a clear roadmap  
-- **7Rs framework**: Multiple modernization paths depending on the application  
-- **ROI measurement**: Cost reduction + business agility  
+- The best product ideas come from real-world frustration and difficulties, not from theoretical brainstorming sessions.
+- Start small by building tools that solve your own problems (like PDF chat or learning assistants) before scaling to complex enterprise systems.
 
 ### Applying to Work
 
-- **Apply DDD** to current projects: Event storming sessions with business teams  
-- **Refactor microservices**: Use bounded contexts to define service boundaries  
-- **Implement event-driven patterns**: Replace some sync calls with async messaging  
-- **Adopt serverless**: Pilot AWS Lambda for suitable use cases  
-- **Try Amazon Q Developer**: Integrate into the dev workflow to boost productivity  
+- Outline Goal, Context, Constraints, and Success Criteria before opening a chat with AI to minimize trial-and-error.
+- Experiment with Amazon Quick Sight to automate work report generation from raw datasets using natural language.
+- Review current project CloudFront distributions to activate auto-compression and enforce origin security using OAC.
+- Stop writing test assertions that assume deterministic LLM outputs; integrate JSON schema validation and majority voting instead.
 
 ### Event Experience
 
-Attending the **“GenAI-powered App-DB Modernization”** workshop was extremely valuable, giving me a comprehensive view of modernizing applications and databases using advanced methods and tools. Key experiences included:
+Attending the AWS Vietnam Community Day 2026 (FCAJ Community Day) was an actually useful experience. It gave me a clear picture of putting AI applications into production and building secure, cost-effective cloud foundations. Here are the main highlights:
 
-#### Learning from highly skilled speakers
-- Experts from AWS and major tech organizations shared **best practices** in modern application design.  
-- Through real-world case studies, I gained a deeper understanding of applying **DDD** and **Event-Driven Architecture** to large projects.  
+#### Learning from experienced speakers
+- Listened to insightful analyses from seasoned professionals at GoTyme Bank, VPBank, and Cloud Kinetics. The speakers shared actual production challenges and system errors rather than just marketing products.
+- Understood that moving a prototype from local development to production requires robust architectures and addressing much higher security risks.
 
-#### Hands-on technical exposure
-- Participating in **event storming** sessions helped me visualize how to **model business processes** into domain events.  
-- Learned how to **split microservices** and define **bounded contexts** to manage large-system complexity.  
-- Understood trade-offs between **synchronous and asynchronous communication** and integration patterns like **pub/sub, point-to-point, streaming**.  
+#### Practical technical insights
+- The sessions dived directly into concrete configurations, such as setting up mTLS, configuring VPC Origin to keep backend ALB/EC2 instances completely off the public internet, and resolving LLM non-determinism at the GPU hardware level.
+- Gained a clear understanding of measuring resource utilization (e.g., reducing EC2 origin CPU loads from 5% to 1% by leveraging optimal caching).
 
-#### Leveraging modern tools
-- Explored **Amazon Q Developer**, an AI tool for SDLC support from planning to maintenance.  
-- Learned to **automate code transformation** and pilot serverless with **AWS Lambda** to improve productivity.  
+#### Exploring modern tools
+- Witnessed live demos of Amazon Quick Suite and Amazon Bedrock AgentCore. These tools indicate a clear shift in GenAI application development from standalone chatbots to agentic automation workflows.
+- Explored ways to handle model variance, such as majority voting and structured output formats to mitigate GenAI's technical limitations.
 
-#### Networking and discussions
-- The workshop offered opportunities to exchange ideas with experts, peers, and business teams, enhancing the **ubiquitous language** between business and tech.  
-- Real-world examples reinforced the importance of the **business-first approach** rather than focusing solely on technology.  
+#### Networking & discussions
+- The event brought together about 400 attendees, mostly First Cloud AI Journey members and the AWS FCAJ community. The discussions were very open, ranging from asking seniors for career advice to detailed questions about RAG algorithms.
+- Observed the energy of the young AWS community, where student developers and junior engineers actively share and search for practical solutions rather than commercial debates.
 
 #### Lessons learned
-- Applying DDD and event-driven patterns reduces **coupling** while improving **scalability** and **resilience**.  
-- Modernization requires a **phased approach** with **ROI measurement**; rushing the process can be risky.  
-- AI tools like Amazon Q Developer can significantly **boost productivity** when integrated into the current workflow.  
+- AI collaboration skills will soon define a developer's core capability. Developing a solid understanding of context engineering and AI risk mitigation is essential, especially for program members.
+- Team sync and targeting real problems are far more valuable than stacking cool but disjointed features.
 
 #### Some event photos
-*Add your event photos here*  
+*Add your event photos here*
 
-> Overall, the event not only provided technical knowledge but also helped me reshape my thinking about application design, system modernization, and cross-team collaboration.
+> Overall, the event gave me solid technical knowledge and reshaped my thinking about system architecture, helping me understand how to integrate AI securely, efficiently, and cost-effectively into real-world projects.
