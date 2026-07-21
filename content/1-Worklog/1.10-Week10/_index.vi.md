@@ -1,54 +1,25 @@
 ---
 title: "Worklog Tuần 10"
-date: 2024-01-01
-weight: 2
+date: 2026-06-28
+weight: 10
 chapter: false
 pre: " <b> 1.10. </b> "
 ---
 ### Mục tiêu tuần 10:
 
-* Kết nối, làm quen với các thành viên trong First Cloud AI Journey.
-* Hiểu dịch vụ AWS cơ bản, cách dùng console & CLI.
+* Thiết lập đầy đủ môi trường backend và cơ sở dữ liệu TrustBite.
+* Tìm hiểu Repository Harness, soft delete, phân quyền và quy trình story.
 
 ### Các công việc cần triển khai trong tuần này:
-| Thứ | Công việc                                                                                                                                                                                   | Ngày bắt đầu | Ngày hoàn thành | Nguồn tài liệu                            |
-| --- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------ | --------------- | ----------------------------------------- |
-| 2   | - Làm quen với các thành viên FCAJ <br> - Đọc và lưu ý các nội quy, quy định tại đơn vị thực tập                                                                                             | 11/08/2025   | 11/08/2025      |
-| 3   | - Tìm hiểu AWS và các loại dịch vụ <br>&emsp; + Compute <br>&emsp; + Storage <br>&emsp; + Networking <br>&emsp; + Database <br>&emsp; + ... <br>                                            | 12/08/2025   | 12/08/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 4   | - Tạo AWS Free Tier account <br> - Tìm hiểu AWS Console & AWS CLI <br> - **Thực hành:** <br>&emsp; + Tạo AWS account <br>&emsp; + Cài AWS CLI & cấu hình <br> &emsp; + Cách sử dụng AWS CLI | 13/08/2025   | 13/08/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 5   | - Tìm hiểu EC2 cơ bản: <br>&emsp; + Instance types <br>&emsp; + AMI <br>&emsp; + EBS <br>&emsp; + ... <br> - Các cách remote SSH vào EC2 <br> - Tìm hiểu Elastic IP   <br>                  | 14/08/2025   | 15/08/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 6   | - **Thực hành:** <br>&emsp; + Tạo EC2 instance <br>&emsp; + Kết nối SSH <br>&emsp; + Gắn EBS volume                                                                                         | 15/08/2025   | 15/08/2025      | <https://cloudjourney.awsstudygroup.com/> |
-
+| Thứ | Công việc | Ngày bắt đầu | Ngày hoàn thành | Nguồn tài liệu |
+| --- | --------- | ------------ | --------------- | -------------- |
+| 2 | - Thiết lập Docker Compose cho PostgreSQL, Redis, LocalStack và pgAdmin.<br>- Chạy `npm run docker:up` và kiểm tra kết nối cơ sở dữ liệu. | 29/06/2026 | 29/06/2026 | [Docker Compose](https://docs.docker.com/compose/)<br>[Local Development Guide](https://github.com/NguyenSonnt04/docs_trustbite) |
+| 3 | - Áp dụng migration `001_init_schema.sql`.<br>- Tìm hiểu `pgcrypto`, PostGIS, các bảng dữ liệu và `schema_migrations`. | 30/06/2026 | 30/06/2026 | [Database Schema](https://github.com/trustbite-team-tcc/trustbite-review-system)<br>[PostGIS Documentation](https://postgis.net/documentation/) |
+| 4 | - Nghiên cứu backend Express Native ESModules theo kiến trúc phân tầng.<br>- Rà soát config, routes, controllers, services, models và middlewares. | 01/07/2026 | 01/07/2026 | [TrustBite Backend](https://github.com/trustbite-team-tcc/trustbite-review-system)<br>[Express Documentation](https://expressjs.com/) |
+| 5 | - Cài Harness CLI, khởi tạo database và truy vấn test matrix.<br>- Hoàn thành story TB-HARNESS. | 02/07/2026 | 02/07/2026 | [Repository Harness](https://github.com/trustbite-team-tcc/trustbite-review-system)<br>[TB-HARNESS Story](https://github.com/NguyenSonnt04/docs_trustbite) |
+| 6 | - Rà soát soft delete cho restaurants.<br>- Tìm hiểu roles, user_roles, rank_definitions, coding convention và story packet. | 03/07/2026 | 03/07/2026 | [Mô hình dữ liệu](https://github.com/trustbite-team-tcc/trustbite-review-system)<br>[Coding Convention](https://github.com/NguyenSonnt04/docs_trustbite) |
 
 ### Kết quả đạt được tuần 10:
 
-* Hiểu AWS là gì và nắm được các nhóm dịch vụ cơ bản: 
-  * Compute
-  * Storage
-  * Networking 
-  * Database
-  * ...
-
-* Đã tạo và cấu hình AWS Free Tier account thành công.
-
-* Làm quen với AWS Management Console và biết cách tìm, truy cập, sử dụng dịch vụ từ giao diện web.
-
-* Cài đặt và cấu hình AWS CLI trên máy tính bao gồm:
-  * Access Key
-  * Secret Key
-  * Region mặc định
-  * ...
-
-* Sử dụng AWS CLI để thực hiện các thao tác cơ bản như:
-
-  * Kiểm tra thông tin tài khoản & cấu hình
-  * Lấy danh sách region
-  * Xem dịch vụ EC2
-  * Tạo và quản lý key pair
-  * Kiểm tra thông tin dịch vụ đang chạy
-  * ...
-
-* Có khả năng kết nối giữa giao diện web và CLI để quản lý tài nguyên AWS song song.
-* ...
-
-
+* Vận hành được môi trường backend và áp dụng migration dữ liệu cốt lõi.
+* Hoàn thành TB-HARNESS và hiểu mô hình soft delete, phân quyền, coding convention của dự án.

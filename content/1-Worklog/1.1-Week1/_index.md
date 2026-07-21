@@ -1,52 +1,27 @@
 ---
 title: "Week 1 Worklog"
-date: 2024-01-01
+date: 2026-04-26
 weight: 1
 chapter: false
 pre: " <b> 1.1. </b> "
 ---
 ### Week 1 Objectives:
 
-* Connect and get acquainted with members of First Cloud AI Journey.
-* Understand basic AWS services, how to use the console & CLI.
+* Get acquainted with classmates and form a working group.
+* Learn AWS core services, account management, and cost monitoring.
+* Understand IAM, VPC, and basic application deployment on Amazon EC2.
 
 ### Tasks to be carried out this week:
-| Day | Task                                                                                                                                                                                                   | Start Date | Completion Date | Reference Material                        |
-| --- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ---------- | --------------- | ----------------------------------------- |
-| 2   | - Get acquainted with FCAJ members <br> - Read and take note of internship unit rules and regulations                                                                                                   | 08/11/2025 | 08/11/2025      |
-| 3   | - Learn about AWS and its types of services <br>&emsp; + Compute <br>&emsp; + Storage <br>&emsp; + Networking <br>&emsp; + Database <br>&emsp; + ... <br>                                              | 08/12/2025 | 08/12/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 4   | - Create AWS Free Tier account <br> - Learn about AWS Console & AWS CLI <br> - **Practice:** <br>&emsp; + Create AWS account <br>&emsp; + Install & configure AWS CLI <br> &emsp; + How to use AWS CLI | 08/13/2025 | 08/13/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 5   | - Learn basic EC2: <br>&emsp; + Instance types <br>&emsp; + AMI <br>&emsp; + EBS <br>&emsp; + ... <br> - SSH connection methods to EC2 <br> - Learn about Elastic IP   <br>                            | 08/14/2025 | 08/15/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 6   | - **Practice:** <br>&emsp; + Launch an EC2 instance <br>&emsp; + Connect via SSH <br>&emsp; + Attach an EBS volume                                                                                     | 08/15/2025 | 08/15/2025      | <https://cloudjourney.awsstudygroup.com/> |
-
+| Day | Task | Start Date | Completion Date | Reference Material |
+| --- | ---- | ---------- | --------------- | ------------------ |
+| 2 | - Got acquainted with classmates.<br>- Formed a group of five members.<br>- Met and exchanged ideas with the group members. | 04/27/2026 | 04/27/2026 |  |
+| 3 | - Learned core AWS services.<br>- Studied AWS account creation, management, and usage cost monitoring. | 04/28/2026 | 04/28/2026 | <https://cloudjourney.awsstudygroup.com/> |
+| 4 | - Studied AWS support mechanisms.<br>- Learned AWS IAM and configured user and account access. | 04/29/2026 | 04/29/2026 | <https://cloudjourney.awsstudygroup.com/> |
+| 5 | - Studied AWS networking.<br>- Created and configured an Amazon VPC. | 04/30/2026 | 04/30/2026 | <https://cloudjourney.awsstudygroup.com/> |
+| 6 | - Studied Amazon EC2.<br>- Launched an EC2 instance and deployed a basic application. | 05/01/2026 | 05/01/2026 | <https://cloudjourney.awsstudygroup.com/> |
 
 ### Week 1 Achievements:
 
-* Understood what AWS is and mastered the basic service groups: 
-  * Compute
-  * Storage
-  * Networking 
-  * Database
-  * ...
-
-* Successfully created and configured an AWS Free Tier account.
-
-* Became familiar with the AWS Management Console and learned how to find, access, and use services via the web interface.
-
-* Installed and configured AWS CLI on the computer, including:
-  * Access Key
-  * Secret Key
-  * Default Region
-  * ...
-
-* Used AWS CLI to perform basic operations such as:
-
-  * Check account & configuration information
-  * Retrieve the list of regions
-  * View EC2 service
-  * Create and manage key pairs
-  * Check information about running services
-  * ...
-
-* Acquired the ability to connect between the web interface and CLI to manage AWS resources in parallel.
-* ...
+* Became acquainted with classmates and formed a five-member working group.
+* Understood core AWS services, account management, and cost monitoring.
+* Configured IAM access and completed initial VPC and EC2 practice.

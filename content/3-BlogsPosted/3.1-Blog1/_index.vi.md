@@ -1,27 +1,52 @@
 ---
 title: "Blog 1"
-date: 2024-01-01
 weight: 1
 chapter: false
 pre: " <b> 3.1. </b> "
 ---
-# SESSION POLICIES TRONG AMAZON EKS POD IDENTITY
 
-Amazon EKS Pod Identity vừa bổ sung tính năng session policies, cho phép bạn thu hẹp quyền IAM một cách linh hoạt và chính xác cho từng pod mà không cần tạo thêm nhiều IAM roles riêng biệt. Đây là bước tiến quan trọng giúp áp dụng nguyên tắc least privilege hiệu quả hơn trong môi trường Kubernetes quy mô lớn.
+# MCP không còn là tất cả trong kiến trúc Agentic AI
 
-Các điểm chính cần nắm:
+Khi nhắc đến **AI Agent**, nhiều người sẽ nghĩ ngay đến **Model Context Protocol (MCP)**, giao thức giúp Agent kết nối với các công cụ và nguồn dữ liệu. Tuy nhiên, trong bài viết mới về **Amazon Bedrock AgentCore**, AWS cho thấy bức tranh đầy đủ hơn với ba giao thức phục vụ ba mục đích khác nhau.
 
-* Session policy là một IAM policy inline được chỉ định khi tạo hoặc cập nhật Pod Identity association.
-* Quyền hiệu quả = intersection (giao) giữa permissions của IAM role và session policy → session policy chỉ có thể thu hẹp, không thể mở rộng quyền.
-* Giúp tránh tình trạng over-permissioning khi reuse chung một IAM role cho nhiều workloads có nhu cầu khác nhau.
-* Hỗ trợ cả same-account và cross-account (qua IAM role chaining).
-* Giảm đáng kể số lượng IAM roles cần quản lý, tránh chạm giới hạn quota IAM trong cluster lớn.
-* Cấu hình dễ dàng qua AWS Management Console, AWS CLI hoặc AWS SDK khi tạo association giữa Kubernetes ServiceAccount và IAM role.
+---
 
-Tính năng này đặc biệt hữu ích khi bạn có nhiều ứng dụng chạy trên cùng một IAM role nhưng cần giới hạn quyền khác nhau (ví dụ: một pod chỉ đọc S3 bucket cụ thể, pod khác chỉ gọi một số API nhất định).
+### 1. Model Context Protocol (MCP)
 
-...Hình ảnh...
+**MCP** đóng vai trò là cầu nối giữa Agent và các công cụ như API, cơ sở dữ liệu, Amazon S3 hay các hệ thống nội bộ. Thay vì phải xây dựng tích hợp riêng cho từng mô hình AI, **MCP** mang đến một chuẩn giao tiếp thống nhất để Agent có thể khám phá và sử dụng các công cụ một cách linh hoạt.
 
-...Link...
+---
 
-...Hướng dẫn...
+### 2. Agent-to-Agent (A2A)
+
+Khi một Agent không còn đủ để xử lý toàn bộ quy trình nghiệp vụ, **A2A** cho phép nhiều Agent chuyên biệt phối hợp với nhau. Ví dụ, một Sales Agent có thể làm việc cùng Finance Agent hoặc Support Agent để hoàn thành một yêu cầu của người dùng. Cách tiếp cận này giúp hệ thống dễ mở rộng và phân tách trách nhiệm rõ ràng hơn.
+
+---
+
+### 3. Agent-User Interaction (AG-UI)
+
+Nếu **MCP** kết nối Agent với công cụ và **A2A** kết nối Agent với Agent thì **AG-UI** tập trung vào trải nghiệm người dùng. Thay vì chỉ phản hồi bằng văn bản, Agent có thể hiển thị bảng dữ liệu, biểu đồ, trạng thái xử lý hoặc các thành phần giao diện tương tác theo thời gian thực.
+
+---
+
+### 4. Tóm tắt ngắn gọn
+
+Có thể tóm tắt mối quan hệ như sau:
+
+* **MCP** = Agent ↔ Tools
+* **A2A** = Agent ↔ Agent
+* **AG-UI** = Agent ↔ User
+
+Điểm mình thấy thú vị là AWS không chỉ tập trung vào việc xây dựng một AI Agent thông minh hơn, mà còn đang chuẩn hóa cách Agent kết nối với công cụ, cộng tác với các Agent khác và tương tác với người dùng. Đây có thể sẽ là nền tảng cho các hệ thống Multi-Agent trong môi trường doanh nghiệp, nơi mỗi Agent đảm nhận một vai trò riêng nhưng vẫn phối hợp thành một quy trình thống nhất.
+
+---
+
+### 5. Tham khảo thêm
+
+Bài viết đã đăng trên AWS Study Group:
+[MCP không còn là tất cả trong kiến trúc Agentic AI](https://www.facebook.com/groups/awsstudygroupfcj/permalink/2207400906691536/)
+
+Đọc bài viết gốc của AWS tại:
+[Build generative AI agents on Amazon Bedrock AgentCore with the AG-UI protocol](https://aws.amazon.com/blogs/machine-learning/build-generative-ai-agents-on-amazon-bedrock-agentcore-with-the-ag-ui-protocol/)
+
+Mọi người đã có cơ hội thử **Amazon Bedrock AgentCore** hoặc xây dựng mô hình **Multi-Agent** chưa? Rất mong được nghe thêm những góc nhìn và kinh nghiệm thực tế từ cộng đồng.

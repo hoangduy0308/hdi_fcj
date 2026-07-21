@@ -1,35 +1,33 @@
 ---
 title: "Worklog"
-date: 2024-01-01
+date: 2026-04-26
 weight: 1
 chapter: false
 pre: " <b> 1. </b> "
 ---
 
-**On this page**, you will need to introduce your worklog. **How** did you complete it? How many weeks did you take to complete the program? **What** did you do in those weeks?
+This 12-week internship worklog covers the period from **April 26, 2026** to **July 12, 2026**, including AWS learning and hands-on practice, TrustBite development, software testing, and Terraform infrastructure work.
 
-Typically, and as a standard, a worklog is carried out over about 3 months (throughout the internship period) with weekly contents as follows:
+**Week 1:** [AWS fundamentals and core services](1.1-week1/)
 
-**Week 1:** [Getting familiar with AWS and basic AWS services](1.1-week1/)
+**Week 2:** [IAM roles, S3, RDS, and system operations](1.2-week2/)
 
-**Week 2:** [Doing task A...](1.2-week2/)
+**Week 3:** [Migration to AWS](1.3-week3/)
 
-**Week 3:** [Doing task B...](1.3-week3/)
+**Week 4:** [Optimization, security, containers, and CI/CD](1.4-week4/)
 
-**Week 4:** [Doing task C...](1.4-week4/)
+**Week 5:** [Microservices, Serverless, and Cognito](1.5-week5/)
 
-**Week 5:** [Doing task D...](1.5-week5/)
+**Week 6:** [Docker, EKS, Fargate, and CI/CD](1.6-week6/)
 
-**Week 6:** [Doing task E...](1.6-week6/)
+**Week 7:** [Data Lake, Analytics, and Data Governance](1.7-week7/)
 
-**Week 7:** [Doing task G...](1.7-week7/)
+**Week 8:** [AI/ML and Generative AI on AWS](1.8-week8/)
 
-**Week 8:** [Doing task H...](1.8-week8/)
+**Week 9:** [TrustBite architecture and development environment](1.9-week9/)
 
-**Week 9:** [Doing task I...](1.9-week9/)
+**Week 10:** [Backend, Repository Harness, and data model](1.10-week10/)
 
-**Week 10:** [Doing task L...](1.10-week10/)
+**Week 11:** [JWT testing, GPS anti-fraud, and CI](1.11-week11/)
 
-**Week 11:** [Doing task M...](1.11-week11/)
-
-**Week 12:** [Doing task N...](1.12-week12/)
+**Week 12:** [Receipt processing, mobile QA, and Terraform MVP](1.12-week12/)

@@ -1,52 +1,25 @@
 ---
 title: "Week 12 Worklog"
-date: 2024-01-01
-weight: 2
+date: 2026-07-12
+weight: 12
 chapter: false
 pre: " <b> 1.12. </b> "
 ---
 ### Week 12 Objectives:
 
-* Connect and get acquainted with members of First Cloud AI Journey.
-* Understand basic AWS services, how to use the console & CLI.
+* Complete receipt, review, restaurant, and mobile testing flows.
+* Perform final fixes and build the Terraform AWS MVP foundation.
 
 ### Tasks to be carried out this week:
-| Day | Task                                                                                                                                                                                                   | Start Date | Completion Date | Reference Material                        |
-| --- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ---------- | --------------- | ----------------------------------------- |
-| 2   | - Get acquainted with FCAJ members <br> - Read and take note of internship unit rules and regulations                                                                                                   | 08/11/2025 | 08/11/2025      |
-| 3   | - Learn about AWS and its types of services <br>&emsp; + Compute <br>&emsp; + Storage <br>&emsp; + Networking <br>&emsp; + Database <br>&emsp; + ... <br>                                              | 08/12/2025 | 08/12/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 4   | - Create AWS Free Tier account <br> - Learn about AWS Console & AWS CLI <br> - **Practice:** <br>&emsp; + Create AWS account <br>&emsp; + Install & configure AWS CLI <br> &emsp; + How to use AWS CLI | 08/13/2025 | 08/13/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 5   | - Learn basic EC2: <br>&emsp; + Instance types <br>&emsp; + AMI <br>&emsp; + EBS <br>&emsp; + ... <br> - SSH connection methods to EC2 <br> - Learn about Elastic IP   <br>                            | 08/14/2025 | 08/15/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 6   | - **Practice:** <br>&emsp; + Launch an EC2 instance <br>&emsp; + Connect via SSH <br>&emsp; + Attach an EBS volume                                                                                     | 08/15/2025 | 08/15/2025      | <https://cloudjourney.awsstudygroup.com/> |
-
+| Day | Task | Start Date | Completion Date | Reference Material |
+| --- | ---- | ---------- | --------------- | ------------------ |
+| 2 | - Developed backend receipt processing.<br>- Built S3 uploads, OCR queue integration, and error tests. | 07/13/2026 | 07/13/2026 | [Receipt Processing Module](https://github.com/trustbite-team-tcc/trustbite-review-system)<br>[Amazon S3 & Textract](https://docs.aws.amazon.com/textract/) |
+| 3 | - Developed review APIs.<br>- Added end-to-end integration tests for review creation and verification. | 07/14/2026 | 07/14/2026 | [Review API](https://github.com/trustbite-team-tcc/trustbite-review-system)<br>[Review Integration Tests](https://github.com/NguyenSonnt04/docs_trustbite) |
+| 4 | - Added Phase 3 restaurant search and filtering.<br>- Tested restaurant lists, details, and search. | 07/15/2026 | 07/15/2026 | [Restaurant API](https://github.com/trustbite-team-tcc/trustbite-review-system)<br>[Phase 3 Documentation](https://github.com/NguyenSonnt04/docs_trustbite) |
+| 5 | - Tested mobile Cognito login, navigation, Home, Notifications, and profiles.<br>- Reviewed Favorites, Splash Screen, icons, and UI consistency. | 07/16/2026 | 07/16/2026 | [TrustBite Mobile](https://github.com/trustbite-team-tcc/trustbite-review-system)<br>[Cognito Authentication](https://docs.aws.amazon.com/cognito/) |
+| 6 | - Fixed defects, refactored, and cleaned up code.<br>- Built the Terraform MVP and ran format, init, validate, and plan without production apply. | 07/17/2026 | 07/17/2026 | [Terraform AWS MVP](https://github.com/trustbite-team-tcc/trustbite-review-system)<br>[Terraform Documentation](https://developer.hashicorp.com/terraform/docs) |
 
 ### Week 12 Achievements:
 
-* Understood what AWS is and mastered the basic service groups: 
-  * Compute
-  * Storage
-  * Networking 
-  * Database
-  * ...
-
-* Successfully created and configured an AWS Free Tier account.
-
-* Became familiar with the AWS Management Console and learned how to find, access, and use services via the web interface.
-
-* Installed and configured AWS CLI on the computer, including:
-  * Access Key
-  * Secret Key
-  * Default Region
-  * ...
-
-* Used AWS CLI to perform basic operations such as:
-
-  * Check account & configuration information
-  * Retrieve the list of regions
-  * View EC2 service
-  * Create and manage key pairs
-  * Check information about running services
-  * ...
-
-* Acquired the ability to connect between the web interface and CLI to manage AWS resources in parallel.
-* ...
+* Completed and tested receipt, review, restaurant, and mobile flows.
+* Completed final fixes and a validated/planned Terraform AWS MVP without production deployment.

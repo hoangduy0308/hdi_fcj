@@ -1,52 +1,25 @@
 ---
 title: "Week 9 Worklog"
-date: 2024-01-01
-weight: 1
+date: 2026-06-21
+weight: 9
 chapter: false
 pre: " <b> 1.9. </b> "
 ---
 ### Week 9 Objectives:
 
-* Connect and get acquainted with members of First Cloud AI Journey.
-* Understand basic AWS services, how to use the console & CLI.
+* Understand TrustBite architecture, source code, data, and authentication.
+* Set up the development environment and learn the team workflow.
 
 ### Tasks to be carried out this week:
-| Day | Task                                                                                                                                                                                                   | Start Date | Completion Date | Reference Material                        |
-| --- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ---------- | --------------- | ----------------------------------------- |
-| 2   | - Get acquainted with FCAJ members <br> - Read and take note of internship unit rules and regulations                                                                                                   | 08/11/2025 | 08/11/2025      |
-| 3   | - Learn about AWS and its types of services <br>&emsp; + Compute <br>&emsp; + Storage <br>&emsp; + Networking <br>&emsp; + Database <br>&emsp; + ... <br>                                              | 08/12/2025 | 08/12/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 4   | - Create AWS Free Tier account <br> - Learn about AWS Console & AWS CLI <br> - **Practice:** <br>&emsp; + Create AWS account <br>&emsp; + Install & configure AWS CLI <br> &emsp; + How to use AWS CLI | 08/13/2025 | 08/13/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 5   | - Learn basic EC2: <br>&emsp; + Instance types <br>&emsp; + AMI <br>&emsp; + EBS <br>&emsp; + ... <br> - SSH connection methods to EC2 <br> - Learn about Elastic IP   <br>                            | 08/14/2025 | 08/15/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 6   | - **Practice:** <br>&emsp; + Launch an EC2 instance <br>&emsp; + Connect via SSH <br>&emsp; + Attach an EBS volume                                                                                     | 08/15/2025 | 08/15/2025      | <https://cloudjourney.awsstudygroup.com/> |
-
+| Day | Task | Start Date | Completion Date | Reference Material |
+| --- | ---- | ---------- | --------------- | ------------------ |
+| 2 | - Reviewed TrustBite goals, scope, and architecture.<br>- Studied the Express, Next.js/React, and Flutter monorepo. | 06/22/2026 | 06/22/2026 | [TrustBite Repository](https://github.com/trustbite-team-tcc/trustbite-review-system)<br>[Architecture Documentation](https://github.com/NguyenSonnt04/docs_trustbite) |
+| 3 | - Installed Node.js, npm, Flutter, Docker, and dependencies.<br>- Built and ran the components locally. | 06/23/2026 | 06/23/2026 | [Project Setup Guide](https://github.com/NguyenSonnt04/docs_trustbite)<br>[Docker Documentation](https://docs.docker.com/) |
+| 4 | - Studied S3, Cognito, Textract, Bedrock, and SES.<br>- Used LocalStack to emulate AWS services. | 06/24/2026 | 06/24/2026 | [AWS Service Documentation](https://docs.aws.amazon.com/)<br>[LocalStack Documentation](https://docs.localstack.cloud/) |
+| 5 | - Reviewed anti-fraud OCR and GPS verification.<br>- Studied PostgreSQL migrations, schemas, and relationships. | 06/25/2026 | 06/25/2026 | [Anti-Fraud Design](https://github.com/NguyenSonnt04/docs_trustbite)<br>[PostgreSQL Documentation](https://www.postgresql.org/docs/) |
+| 6 | - Reviewed Cognito JWT and API protection.<br>- Applied coding conventions, pull request, and testing processes. | 06/26/2026 | 06/26/2026 | [Amazon Cognito](https://docs.aws.amazon.com/cognito/)<br>[Development Workflow](https://github.com/NguyenSonnt04/docs_trustbite) |
 
 ### Week 9 Achievements:
 
-* Understood what AWS is and mastered the basic service groups: 
-  * Compute
-  * Storage
-  * Networking 
-  * Database
-  * ...
-
-* Successfully created and configured an AWS Free Tier account.
-
-* Became familiar with the AWS Management Console and learned how to find, access, and use services via the web interface.
-
-* Installed and configured AWS CLI on the computer, including:
-  * Access Key
-  * Secret Key
-  * Default Region
-  * ...
-
-* Used AWS CLI to perform basic operations such as:
-
-  * Check account & configuration information
-  * Retrieve the list of regions
-  * View EC2 service
-  * Create and manage key pairs
-  * Check information about running services
-  * ...
-
-* Acquired the ability to connect between the web interface and CLI to manage AWS resources in parallel.
-* ...
+* Set up and ran the TrustBite components locally.
+* Understood its monorepo, AWS integrations, data model, anti-fraud flow, and development workflow.

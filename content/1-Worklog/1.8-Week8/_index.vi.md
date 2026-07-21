@@ -1,54 +1,25 @@
 ---
 title: "Worklog Tuần 8"
-date: 2024-01-01
-weight: 1
+date: 2026-06-14
+weight: 8
 chapter: false
 pre: " <b> 1.8. </b> "
 ---
 ### Mục tiêu tuần 8:
 
-* Kết nối, làm quen với các thành viên trong First Cloud AI Journey.
-* Hiểu dịch vụ AWS cơ bản, cách dùng console & CLI.
+* Tìm hiểu AI/ML, Foundation Models và Generative AI trên AWS.
+* Nghiên cứu Computer Vision, NLP, MLOps và Responsible AI.
 
 ### Các công việc cần triển khai trong tuần này:
-| Thứ | Công việc                                                                                                                                                                                   | Ngày bắt đầu | Ngày hoàn thành | Nguồn tài liệu                            |
-| --- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------ | --------------- | ----------------------------------------- |
-| 2   | - Làm quen với các thành viên FCAJ <br> - Đọc và lưu ý các nội quy, quy định tại đơn vị thực tập                                                                                             | 11/08/2025   | 11/08/2025      |
-| 3   | - Tìm hiểu AWS và các loại dịch vụ <br>&emsp; + Compute <br>&emsp; + Storage <br>&emsp; + Networking <br>&emsp; + Database <br>&emsp; + ... <br>                                            | 12/08/2025   | 12/08/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 4   | - Tạo AWS Free Tier account <br> - Tìm hiểu AWS Console & AWS CLI <br> - **Thực hành:** <br>&emsp; + Tạo AWS account <br>&emsp; + Cài AWS CLI & cấu hình <br> &emsp; + Cách sử dụng AWS CLI | 13/08/2025   | 13/08/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 5   | - Tìm hiểu EC2 cơ bản: <br>&emsp; + Instance types <br>&emsp; + AMI <br>&emsp; + EBS <br>&emsp; + ... <br> - Các cách remote SSH vào EC2 <br> - Tìm hiểu Elastic IP   <br>                  | 14/08/2025   | 15/08/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 6   | - **Thực hành:** <br>&emsp; + Tạo EC2 instance <br>&emsp; + Kết nối SSH <br>&emsp; + Gắn EBS volume                                                                                         | 15/08/2025   | 15/08/2025      | <https://cloudjourney.awsstudygroup.com/> |
-
+| Thứ | Công việc | Ngày bắt đầu | Ngày hoàn thành | Nguồn tài liệu |
+| --- | --------- | ------------ | --------------- | -------------- |
+| 2 | - Nghiên cứu các dịch vụ Artificial Intelligence và Machine Learning trên AWS.<br>- Tìm hiểu các bài toán ứng dụng AI/ML thực tế. | 15/06/2026 | 15/06/2026 | <https://cloudjourney.awsstudygroup.com/> |
+| 3 | - Tìm hiểu Foundation Models và Generative AI trên AWS.<br>- Thực hành khai thác LLM để sinh nội dung và tương tác thông minh. | 16/06/2026 | 16/06/2026 | <https://cloudjourney.awsstudygroup.com/> |
+| 4 | - Nghiên cứu Computer Vision.<br>- Thực hành phân tích hình ảnh, video, nhận diện đối tượng và trích xuất thông tin. | 17/06/2026 | 17/06/2026 | <https://cloudjourney.awsstudygroup.com/> |
+| 5 | - Tìm hiểu NLP, phân tích văn bản và đánh giá cảm xúc.<br>- Thực hành xây dựng, quản lý Custom Machine Learning Models. | 18/06/2026 | 18/06/2026 | <https://cloudjourney.awsstudygroup.com/> |
+| 6 | - Nghiên cứu MLOps, triển khai và giám sát mô hình.<br>- Tìm hiểu Responsible AI, thiên lệch, giải thích mô hình và an toàn AI. | 19/06/2026 | 19/06/2026 | <https://cloudjourney.awsstudygroup.com/> |
 
 ### Kết quả đạt được tuần 8:
 
-* Hiểu AWS là gì và nắm được các nhóm dịch vụ cơ bản: 
-  * Compute
-  * Storage
-  * Networking 
-  * Database
-  * ...
-
-* Đã tạo và cấu hình AWS Free Tier account thành công.
-
-* Làm quen với AWS Management Console và biết cách tìm, truy cập, sử dụng dịch vụ từ giao diện web.
-
-* Cài đặt và cấu hình AWS CLI trên máy tính bao gồm:
-  * Access Key
-  * Secret Key
-  * Region mặc định
-  * ...
-
-* Sử dụng AWS CLI để thực hiện các thao tác cơ bản như:
-
-  * Kiểm tra thông tin tài khoản & cấu hình
-  * Lấy danh sách region
-  * Xem dịch vụ EC2
-  * Tạo và quản lý key pair
-  * Kiểm tra thông tin dịch vụ đang chạy
-  * ...
-
-* Có khả năng kết nối giữa giao diện web và CLI để quản lý tài nguyên AWS song song.
-* ...
-
-
+* Nắm được các nhóm giải pháp AI/ML, Generative AI, Computer Vision và NLP trên AWS.
+* Hiểu vòng đời mô hình, MLOps và các nguyên tắc Responsible AI.

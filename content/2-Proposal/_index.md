@@ -1,111 +1,203 @@
 ---
 title: "Proposal"
-date: 2024-01-01
 weight: 2
 chapter: false
 pre: " <b> 2. </b> "
 ---
-In this section, you need to summarize the contents of the workshop that you **plan** to conduct.
 
-# IoT Weather Platform for Lab Research
-## A Unified AWS Serverless Solution for Real-Time Weather Monitoring
+# TrustBite – Verified Food Review Platform
+## An Anti-Fraud Review Solution Powered by AWS for Vietnam's F&B Market
+
+---
 
 ### 1. Executive Summary
-The IoT Weather Platform is designed for the ITea Lab team in Ho Chi Minh City to enhance weather data collection and analysis. It supports up to 5 weather stations, with potential scalability to 10-15, utilizing Raspberry Pi edge devices with ESP32 sensors to transmit data via MQTT. The platform leverages AWS Serverless services to deliver real-time monitoring, predictive analytics, and cost efficiency, with access restricted to 5 lab members via Amazon Cognito.
+
+TrustBite (*"Trust in every bite"*) is a food review platform focused on **review authenticity**. Rather than allowing anyone to submit reviews freely, TrustBite requires users to provide real-world evidence — receipts — and verifies them through automated anti-fraud mechanisms.
+
+The system is built as a **monorepo** with three main components:
+- **Mobile App (Flutter)**: The primary application for end users (iOS & Android).
+- **Web Portal (Next.js)**: Admin portal for system management and merchant portal for restaurant owners.
+- **Backend API (Node.js + Express)**: Business logic processing, AWS integration, and data management.
+
+Core AWS services: **Amazon S3** (receipt storage), **Amazon Textract** (OCR for receipt information extraction), **Amazon Cognito** (user authentication), **Amazon SES** (email notifications), and **Amazon Bedrock** (AI-powered review summarization — future phase).
+
+---
 
 ### 2. Problem Statement
-### What’s the Problem?
-Current weather stations require manual data collection, becoming unmanageable with multiple units. There is no centralized system for real-time data or analytics, and third-party platforms are costly and overly complex.
 
-### The Solution
-The platform uses AWS IoT Core to ingest MQTT data, AWS Lambda and API Gateway for processing, Amazon S3 for storage (including a data lake), and AWS Glue Crawlers and ETL jobs to extract, transform, and load data from the S3 data lake to another S3 bucket for analysis. AWS Amplify with Next.js provides the web interface, and Amazon Cognito ensures secure access. Similar to Thingsboard and CoreIoT, users can register new devices and manage connections, though this platform operates on a smaller scale and is designed for private use. Key features include real-time dashboards, trend analysis, and low operational costs.
+#### The Problem
 
-### Benefits and Return on Investment
-The solution establishes a foundational resource for lab members to develop a larger IoT platform, serving as a study resource, and provides a data foundation for AI enthusiasts for model training or analysis. It reduces manual reporting for each station via a centralized platform, simplifying management and maintenance, and improves data reliability. Monthly costs are $0.66 USD per the AWS Pricing Calculator, with a 12-month total of $7.92 USD. All IoT equipment costs are covered by the existing weather station setup, eliminating additional development expenses. The break-even period of 6-12 months is achieved through significant time savings from reduced manual work.
+Vietnam's food review market is plagued by **fake reviews**:
+- Fake 5-star reviews created or purchased by restaurant owners.
+- 1-star reviews from competitors aimed at sabotage.
+- Users have no way to distinguish real from fake reviews.
+- Existing platforms (Google Maps, Facebook) lack receipt verification or proof-of-visit mechanisms.
+
+#### The Solution
+
+TrustBite addresses this through **three verification layers**:
+
+1. **Receipt Verification (OCR)**: Users upload a receipt → Amazon Textract extracts information (restaurant name, date/time, amount) → Cross-referenced against the reviewed restaurant.
+2. **Location Verification (GPS)**: Checks the distance between user's location and the restaurant (200m threshold using the Haversine formula).
+3. **Duplicate Detection (Hash)**: Computes SHA-256 hash of the receipt to block reuse of previously submitted receipts.
+
+Verification results are aggregated into a **Trust Score** — a confidence indicator for each review.
+
+#### Benefits
+
+- **Users**: Find restaurants based on evidence-backed reviews, protected from fake ratings.
+- **Honest Restaurant Owners**: Protected from malicious reviews; verified reviews strengthen credibility.
+- **F&B Ecosystem**: Creates a fair competitive environment based on genuine quality.
+
+---
 
 ### 3. Solution Architecture
-The platform employs a serverless AWS architecture to manage data from 5 Raspberry Pi-based stations, scalable to 15. Data is ingested via AWS IoT Core, stored in an S3 data lake, and processed by AWS Glue Crawlers and ETL jobs to transform and load it into another S3 bucket for analysis. Lambda and API Gateway handle additional processing, while Amplify with Next.js hosts the dashboard, secured by Cognito. The architecture is detailed below:
 
-![IoT Weather Station Architecture](/images/2-Proposal/edge_architecture.jpeg)
+#### Overall Architecture Diagram
 
-![IoT Weather Platform Architecture](/images/2-Proposal/platform_architecture.jpeg)
+<img src="/fcj-template/images/5-Workshop/5.1-Workshop-overview/trustbite-aws-architecture.png" alt="TrustBite deployment architecture showing the AWS networking, compute, data, identity, security, monitoring, and provider services" style="display: block; width: auto; max-width: 100%; height: auto; margin: 1.5rem auto; border-radius: 6px; box-shadow: 0 4px 20px rgba(0,0,0,0.08);" />
 
-### AWS Services Used
-- **AWS IoT Core**: Ingests MQTT data from 5 stations, scalable to 15.
-- **AWS Lambda**: Processes data and triggers Glue jobs (two functions).
-- **Amazon API Gateway**: Facilitates web app communication.
-- **Amazon S3**: Stores raw data in a data lake and processed outputs (two buckets).
-- **AWS Glue**: Crawlers catalog data, and ETL jobs transform and load it.
-- **AWS Amplify**: Hosts the Next.js web interface.
-- **Amazon Cognito**: Secures access for lab users.
+<p style="text-align: center; margin-top: -0.75rem;"><em>TrustBite deployment architecture on AWS. Click the diagram to view the full-size version.</em></p>
 
-### Component Design
-- **Edge Devices**: Raspberry Pi collects and filters sensor data, sending it to IoT Core.
-- **Data Ingestion**: AWS IoT Core receives MQTT messages from the edge devices.
-- **Data Storage**: Raw data is stored in an S3 data lake; processed data is stored in another S3 bucket.
-- **Data Processing**: AWS Glue Crawlers catalog the data, and ETL jobs transform it for analysis.
-- **Web Interface**: AWS Amplify hosts a Next.js app for real-time dashboards and analytics.
-- **User Management**: Amazon Cognito manages user access, allowing up to 5 active accounts.
+#### AWS Services Used
+
+| Service | Role in System |
+| --- | --- |
+| **Amazon S3** | Receipt storage (private bucket, access via signed URL) |
+| **Amazon Textract** | OCR to extract receipt information (restaurant name, date/time, total amount) |
+| **Amazon Cognito** | User authentication, session management |
+| **Amazon SES** | Email notifications for verification results |
+| **Amazon SNS** | OTP SMS delivery for phone number authentication |
+| **Amazon RDS (PostgreSQL)** | Primary database (users, restaurants, reviews, verifications) |
+| **Amazon ECS Fargate** | Runs API container and OCR/Fraud worker |
+| **Amazon ElastiCache (Redis)** | Async processing queue (BullMQ), OTP rate limiting |
+| **Amazon Bedrock** | AI-powered review summarization — future phase (P2) |
+| **AWS CloudFront** | CDN for Admin/Merchant web portal |
+
+#### Component Design
+
+- **Mobile App (Flutter)**: Main UI for end users — find restaurants, read reviews, submit reviews + receipts, view Trust Score.
+- **Backend API (Express ESM)**: Business logic in layered architecture (routes → controllers → services → models); validates JWT from Cognito.
+- **OCR/Fraud Worker**: Runs asynchronously via BullMQ — computes receipt hash, calls Textract, matches OCR results, computes fraud score, updates results in PostgreSQL.
+- **Admin Portal (Next.js)**: Administrators review pending verification queue, view receipt images + OCR results + GPS distance, and make final decisions.
+- **PostgreSQL + PostGIS**: Stores all product data — users, restaurants, reviews, receipt_verifications, badges, price_history; PostGIS supports geospatial calculations.
+
+---
 
 ### 4. Technical Implementation
-**Implementation Phases**
-This project has two parts—setting up weather edge stations and building the weather platform—each following 4 phases:
-- Build Theory and Draw Architecture: Research Raspberry Pi setup with ESP32 sensors and design the AWS serverless architecture (1 month pre-internship)
-- Calculate Price and Check Practicality: Use AWS Pricing Calculator to estimate costs and adjust if needed (Month 1).
-- Fix Architecture for Cost or Solution Fit: Tweak the design (e.g., optimize Lambda with Next.js) to stay cost-effective and usable (Month 2).
-- Develop, Test, and Deploy: Code the Raspberry Pi setup, AWS services with CDK/SDK, and Next.js app, then test and release to production (Months 2-3).
 
-**Technical Requirements**
-- Weather Edge Station: Sensors (temperature, humidity, rainfall, wind speed), a microcontroller (ESP32), and a Raspberry Pi as the edge device. Raspberry Pi runs Raspbian, handles Docker for filtering, and sends 1 MB/day per station via MQTT over Wi-Fi.
-- Weather Platform: Practical knowledge of AWS Amplify (hosting Next.js), Lambda (minimal use due to Next.js), AWS Glue (ETL), S3 (two buckets), IoT Core (gateway and rules), and Cognito (5 users). Use AWS CDK/SDK to code interactions (e.g., IoT Core rules to S3). Next.js reduces Lambda workload for the fullstack web app.
+#### Implementation Phases
+
+| Phase | Content | Timeline |
+| --- | --- | --- |
+| **Week 1** | Architecture research, codebase familiarization, local environment setup (Docker Compose: PostgreSQL, Redis, LocalStack), and DB schema design. | Month 1 |
+| **Week 2** | Harness workflow deployment, backend framework setup, and Amazon Cognito User Pool creation. | Month 1 |
+| **Week 3** | Cognito authentication integration (JWT Middleware), building restaurant APIs and user management. | Month 1 |
+| **Week 4** | Review submission flow, integrating receipt image upload to S3, and asynchronous OCR extraction worker with AWS Textract. | Month 1 |
+| **Week 5** | Anti-fraud engine verification implementation (duplicate SHA-256 hash checks, GPS proximity Haversine checks, Levenshtein merchant name matching), and Trust Score calculations. | Month 2 |
+| **Week 6** | Completing Admin Portal UI integration, end-to-end integration testing, and container deployment on AWS ECS Fargate. | Month 2 |
+
+#### Technical Requirements
+
+**Backend:**
+- Node.js (v20.9+) + Express with Native ES Modules.
+- PostgreSQL + PostGIS (geospatial), Redis + BullMQ (async queue).
+- Layered architecture: routes → controllers → services → models.
+- JWT validation from Amazon Cognito at the middleware layer.
+
+**Frontend:**
+- Flutter (Dart) for mobile app — Android & iOS.
+- Next.js (App Router) for Admin/Merchant portal.
+
+**AWS Integrations:**
+- S3: Receipt upload via multipart or signed URL.
+- Textract: Async OCR processing, results returned via worker.
+- Cognito: OTP SMS flow + access token + refresh token.
+- SES: Email notification for verification results.
+
+**Anti-Fraud Rules:**
+
+| Rule | Threshold |
+| --- | --- |
+| Duplicate receipt | SHA-256 hash — reject if duplicate |
+| Restaurant name match (OCR) | ≥ 80% similarity |
+| Receipt age | ≤ 48 hours from issue date |
+| GPS distance | ≤ 200m (Haversine formula) |
+
+---
 
 ### 5. Timeline & Milestones
-**Project Timeline**
-- Pre-Internship (Month 0): 1 month for planning and old station review.
-- Internship (Months 1-3): 3 months.
-    - Month 1: Study AWS and upgrade hardware.
-    - Month 2: Design and adjust architecture.
-    - Month 3: Implement, test, and launch.
-- Post-Launch: Up to 1 year for research.
+
+*   **Month 1 (Weeks 1–4):** **Platform Integration & Initialization**
+    *   Local environment setup (Docker Compose) & DB schema design.
+    *   Harness workflow deployment & backend framework setup.
+    *   Cognito authentication integration & building user/restaurant APIs.
+    *   Integrating receipt uploads to S3 & automated OCR extraction via AWS Textract.
+*   **Month 2 (Weeks 5–6):** **Anti-Fraud Engine & AWS Deployment**
+    *   Implementing anti-fraud verification logic & automated Trust Score calculation.
+    *   Completing Admin Portal UI integration.
+    *   End-to-end integration testing & Docker container deployment on AWS ECS Fargate.
+*   **Post-MVP:** **Feature Expansion**
+    *   AI-powered review summarization utilizing Amazon Bedrock.
+    *   Building the Merchant Portal for restaurant owners.
+    *   Publishing applications to App Store & Google Play.
+
+**Checkpoints:**
+- **Week 2**: Stable local environment, database schema initialized, and Harness workflow completed.
+- **Week 4**: User signup/login via Cognito functional, review posting, and S3 OCR receipt upload integrated.
+- **Week 6**: Anti-fraud automated Trust Score engine working accurately, Admin Portal processing reviews smoothly, and AWS ECS Fargate deployment complete.
+
+---
 
 ### 6. Budget Estimation
-You can find the budget estimation on the [AWS Pricing Calculator](https://calculator.aws/#/estimate?id=621f38b12a1ef026842ba2ddfe46ff936ed4ab01).  
-Or you can download the [Budget Estimation File](../attachments/budget_estimation.pdf).
 
-### Infrastructure Costs
-- AWS Services:
-    - AWS Lambda: $0.00/month (1,000 requests, 512 MB storage).
-    - S3 Standard: $0.15/month (6 GB, 2,100 requests, 1 GB scanned).
-    - Data Transfer: $0.02/month (1 GB inbound, 1 GB outbound).
-    - AWS Amplify: $0.35/month (256 MB, 500 ms requests).
-    - Amazon API Gateway: $0.01/month (2,000 requests).
-    - AWS Glue ETL Jobs: $0.02/month (2 DPUs).
-    - AWS Glue Crawlers: $0.07/month (1 crawler).
-    - MQTT (IoT Core): $0.08/month (5 devices, 45,000 messages).
+**Estimated monthly AWS costs (staging/MVP environment):**
 
-Total: $0.7/month, $8.40/12 months
+| Service | Est. Cost/Month | Notes |
+| --- | --- | --- |
+| Amazon RDS (PostgreSQL db.t3.micro) | ~$15 | Single-AZ, 20 GB storage |
+| Amazon ECS Fargate (API + Worker) | ~$10 | 0.25 vCPU, 0.5 GB RAM per task |
+| Amazon S3 | ~$1 | ~10 GB receipts, lifecycle policy |
+| Amazon Textract | ~$5 | ~500 pages OCR ($1.50/1,000 pages) |
+| Amazon ElastiCache (Redis t3.micro) | ~$12 | Cache + queue |
+| Amazon Cognito | ~$0 | Free tier: 50,000 MAU |
+| Amazon SES | ~$1 | ~10,000 emails |
+| Amazon SNS (SMS OTP) | ~$5 | ~500 OTP SMS |
+| **Total** | **~$49/month** | Staging environment |
 
-- Hardware: $265 one-time (Raspberry Pi 5 and sensors).
+> **During development**: LocalStack simulates S3, Textract, Cognito, SES locally → AWS costs are nearly $0 during local development.
+
+---
 
 ### 7. Risk Assessment
-#### Risk Matrix
-- Network Outages: Medium impact, medium probability.
-- Sensor Failures: High impact, low probability.
-- Cost Overruns: Medium impact, low probability.
 
-#### Mitigation Strategies
-- Network: Local storage on Raspberry Pi with Docker.
-- Sensors: Regular checks and spares.
-- Cost: AWS budget alerts and optimization.
+#### Risk Matrix
+
+| Risk | Impact | Probability | Mitigation Strategy |
+| --- | --- | --- | --- |
+| Textract OCR inaccuracy (blurry receipts, unusual formats) | High | Medium | Queue as `PENDING_ADMIN_REVIEW` for manual admin review |
+| Users bypassing GPS (fake location) | Medium | Medium | GPS is a supplementary factor, not mandatory; combined with OCR matching |
+| Sudden spike in Textract costs | Medium | Low | Upload rate limiting, async processing, only OCR valid files |
+| User receipt data exposure | High | Low | S3 private bucket, access only via short-lived signed URLs |
+| Database migration causing data loss | High | Low | Test migrations on staging first, rollback scripts ready |
 
 #### Contingency Plans
-- Revert to manual methods if AWS fails.
-- Use CloudFormation for cost-related rollbacks.
+
+- **OCR Provider**: Textract can be replaced by another OCR provider if needed (architecture separates the provider layer).
+- **Manual Verification**: Admin portal supports manual review when automated verification fails.
+- **LocalStack**: Local environment does not depend on real AWS → development continues uninterrupted.
+
+---
 
 ### 8. Expected Outcomes
-#### Technical Improvements: 
-Real-time data and analytics replace manual processes.  
-Scalable to 10-15 stations.
-#### Long-term Value
-1-year data foundation for AI research.  
-Reusable for future projects.
+
+**Technical Achievements:**
+- End-to-end automated review verification system: receipt upload → OCR → Trust Score.
+- Complete Backend API with layered architecture, JWT authentication, rate limiting.
+- Flutter mobile app allowing users to find restaurants, view Trust Scores, and submit verified reviews.
+- CI/CD pipeline automating build, test, and deployment to staging.
+
+**Long-term Value:**
+- Platform can be extended with AI summarization (Bedrock/Claude) and merchant portal features.
+- Monorepo architecture enables the team to develop 3 components in parallel (mobile, web, server).
+- PostgreSQL schema with PostGIS supports advanced geospatial features (nearby restaurants, review heatmaps).

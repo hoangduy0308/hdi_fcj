@@ -1,0 +1,4 @@
+{{- $src := strings.TrimPrefix "/" (.Get "src") -}}
+{{- $alt := .Get "alt" | default "" -}}
+{{- $style := .Get "style" | default "width: 100%; max-width: 1200px; height: auto;" -}}
+<img src="{{ $src | relURL }}" alt="{{ $alt }}" style="{{ $style | safeCSS }}">
