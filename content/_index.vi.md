@@ -25,6 +25,8 @@ chapter: false
 
 &emsp; **Thời gian thực tập:** Từ ngày 17/04/2026 đến ngày 10/07/2026
 
+{{< siteimg src="/images/hoang-duy-profile.png" alt="Nguyễn Lê Hoàng Duy" style="width: 100%; max-width: 400px; height: auto; display: block; margin: 1.5rem auto;" >}}
+
 ### Nội dung báo cáo
 
 1.  [Worklog](1-Worklog/)

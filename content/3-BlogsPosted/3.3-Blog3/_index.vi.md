@@ -4,23 +4,52 @@ weight: 3
 chapter: false
 pre: " <b> 3.3. </b> "
 ---
-# SESSION POLICIES TRONG AMAZON EKS POD IDENTITY
 
-Amazon EKS Pod Identity vừa bổ sung tính năng session policies, cho phép bạn thu hẹp quyền IAM một cách linh hoạt và chính xác cho từng pod mà không cần tạo thêm nhiều IAM roles riêng biệt. Đây là bước tiến quan trọng giúp áp dụng nguyên tắc least privilege hiệu quả hơn trong môi trường Kubernetes quy mô lớn.
+# AgentCore Harness: Từ ý tưởng đến một AI Agent hoạt động chỉ với hai API
 
-Các điểm chính cần nắm:
+Khi xây dựng một AI Agent, phần khó không chỉ nằm ở việc gọi mô hình ngôn ngữ mà còn ở vòng lặp xử lý, kết nối công cụ, quản lý bộ nhớ, trạng thái phiên, danh tính, khả năng quan sát và môi trường thực thi an toàn.
 
-* Session policy là một IAM policy inline được chỉ định khi tạo hoặc cập nhật Pod Identity association.
-* Quyền hiệu quả = intersection (giao) giữa permissions của IAM role và session policy → session policy chỉ có thể thu hẹp, không thể mở rộng quyền.
-* Giúp tránh tình trạng over-permissioning khi reuse chung một IAM role cho nhiều workloads có nhu cầu khác nhau.
-* Hỗ trợ cả same-account và cross-account (qua IAM role chaining).
-* Giảm đáng kể số lượng IAM roles cần quản lý, tránh chạm giới hạn quota IAM trong cluster lớn.
-* Cấu hình dễ dàng qua AWS Management Console, AWS CLI hoặc AWS SDK khi tạo association giữa Kubernetes ServiceAccount và IAM role.
+**Amazon Bedrock AgentCore Harness** đóng gói các thành phần này thành một dịch vụ được quản lý, giúp developer tập trung vào logic nghiệp vụ và khả năng của agent thay vì tự xây dựng toàn bộ phần hạ tầng.
 
-Tính năng này đặc biệt hữu ích khi bạn có nhiều ứng dụng chạy trên cùng một IAM role nhưng cần giới hạn quyền khác nhau (ví dụ: một pod chỉ đọc S3 bucket cụ thể, pod khác chỉ gọi một số API nhất định).
+---
 
-...Hình ảnh...
+## 1. Hai API chính
 
-...Link...
+Một agent có thể được đưa vào hoạt động thông qua hai API:
 
-...Hướng dẫn...
+* **CreateHarness:** Định nghĩa model, system prompt, tools, skills, memory và giới hạn thực thi.
+* **InvokeHarness:** Gửi yêu cầu để agent phân tích, lựa chọn công cụ, thực thi và trả kết quả.
+
+Ví dụ, một AWS Support Agent có thể đọc log CloudWatch, tìm tài liệu AWS, phân tích nguyên nhân lỗi, đề xuất cách xử lý và tạo support case khi cần thiết.
+
+---
+
+## 2. Những gì Harness quản lý
+
+Mỗi phiên agent có thể chạy trong môi trường cô lập với filesystem và shell riêng. Harness cũng hỗ trợ kết nối với **AgentCore Gateway**, **MCP server**, **AgentCore Browser**, **Code Interpreter** và **Inline Function**.
+
+Model được tách khỏi logic của agent, vì vậy developer có thể cấu hình model mặc định hoặc lựa chọn model khác cho từng yêu cầu mà không phải thay đổi toàn bộ hệ thống.
+
+---
+
+## 3. Harness và Runtime
+
+* **AgentCore Harness** phù hợp với agent theo quy trình phổ biến: nhận yêu cầu, suy luận, gọi công cụ và trả kết quả. Giải pháp này ưu tiên tốc độ phát triển và sự đơn giản.
+* **AgentCore Runtime** phù hợp hơn khi cần framework riêng, workflow đặc biệt, orchestration tùy chỉnh hoặc can thiệp sâu vào quá trình thực thi.
+
+Harness không có nghĩa là xây dựng agent hoàn toàn không cần code. Developer vẫn phải thiết kế prompt, công cụ, dữ liệu, IAM role, quyền truy cập và cơ chế kiểm soát hành động.
+
+---
+
+## Kết luận
+
+Với **CreateHarness** để định nghĩa và **InvokeHarness** để vận hành, AgentCore Harness giúp giảm đáng kể phần “khung xương” phải tự xây dựng cho một AI Agent. Nhờ đó, đội phát triển có thể dành nhiều thời gian hơn cho bài toán thực tế và nhanh chóng đưa agent từ ý tưởng đến môi trường production.
+
+---
+
+## Tham khảo thêm
+
+Đọc bài viết chính thức từ AWS:
+[Amazon Bedrock AgentCore harness is now generally available: Go from idea to production-grade agent in minutes](https://aws.amazon.com/blogs/machine-learning/amazon-bedrock-agentcore-harness-is-now-generally-available-go-from-idea-to-production-grade-agent-in-minutes/)
+
+#AWS #AmazonBedrock #AgentCore #AgenticAI #GenerativeAI
